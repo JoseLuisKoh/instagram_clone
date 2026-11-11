@@ -1,17 +1,17 @@
-# instagram_clone
+# Instagram Clone (Flutter)
 
-A new Flutter project.
+A mobile social media application built with Flutter and Firebase targeting Android.
 
-## Getting Started
+## 📌 Project Overview
+* **Name:** Instagram Clone
+* **Purpose:** Replicate core Instagram features including authentication, dynamic feed, cloud image storage, and user profile management.
 
-This project is a starting point for a Flutter application.
+## 🛠️ Tech Stack & Services
+* **Frontend:** Flutter (Dart)
+* **Backend & Cloud:** Firebase (Auth, Cloud Firestore, Cloud Storage)
+* **Target Platform:** Android
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## ⚙️ Requirements & Setup
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/JoseLuisKoh/instagram_clone.git](https://github.com/JoseLuisKoh/instagram_clone.git)
