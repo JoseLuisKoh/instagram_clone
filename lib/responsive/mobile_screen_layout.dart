@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/screens/login_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
+import 'package:instagram_clone/screens/add_post_screen.dart';
 
 class MobileScreenLayout extends StatefulWidget {
   const MobileScreenLayout({super.key});
@@ -46,7 +47,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         children: [
           const Center(child: Text('feed')),
           const Center(child: Text('search')),
-          const Center(child: Text('add post')),
+          const AddPostScreen(),
           const Center(child: Text('notif')),
           Center(
             child: ElevatedButton(
@@ -63,6 +64,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
             ),
           ),
         ],
+
       ),
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: mobileBackgroundColor,
