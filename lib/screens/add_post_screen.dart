@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instagram_clone/models/user.dart';
 import 'package:instagram_clone/providers/user_provider.dart';
+import 'package:instagram_clone/resources/firestore_methods.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/utils/utils.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +18,54 @@ class AddPostScreen extends StatefulWidget {
 class _AddPostScreenState extends State<AddPostScreen> {
   Uint8List? _file;
   final TextEditingController _descriptionController = TextEditingController();
+  bool _isLoading = false;
+
+  void postImage(
+    String uid,
+    String username,
+    String profImage,
+  ) async {
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      String res = await FirestoreMethods().uploadPost(
+        _descriptionController.text,
+        _file!,
+        uid,
+        username,
+        profImage,
+      );
+
+      if (res == "success") {
+        setState(() {
+          _isLoading = false;
+        });
+        if (mounted) {
+          showSnackBar('Posted!', context);
+        }
+        clearImage();
+        _descriptionController.clear();
+      } else {
+        setState(() {
+          _isLoading = false;
+        });
+        if (mounted) {
+          showSnackBar(res, context);
+        }
+      }
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+      if (mounted) {
+        showSnackBar(e.toString(), context);
+      }
+    }
+  }
 
   Future<void> _selectImage(BuildContext parentContext) async {
+    //PARTE DE ACCESO A LA CAMARA Y VIDEO
     return showDialog(
       context: parentContext,
       builder: (BuildContext context) {
@@ -98,7 +145,11 @@ class _AddPostScreenState extends State<AddPostScreen> {
               centerTitle: false,
               actions: <Widget>[
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () => postImage(
+                    user.uid,
+                    user.username,
+                    user.photoUrl,
+                  ),
                   child: const Text(
                     'Post',
                     style: TextStyle(
@@ -112,6 +163,10 @@ class _AddPostScreenState extends State<AddPostScreen> {
             ),
             body: Column(
               children: <Widget>[
+                _isLoading
+                    ? const LinearProgressIndicator()
+                    : const Padding(padding: EdgeInsets.only(top: 0)),
+                const Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,

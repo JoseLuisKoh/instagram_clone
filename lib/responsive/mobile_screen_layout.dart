@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:instagram_clone/screens/login_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/screens/add_post_screen.dart';
+import 'package:instagram_clone/screens/feed_screen.dart';
 
 class MobileScreenLayout extends StatefulWidget {
   const MobileScreenLayout({super.key});
@@ -11,6 +12,7 @@ class MobileScreenLayout extends StatefulWidget {
   @override
   State<MobileScreenLayout> createState() => _MobileScreenLayoutState();
 }
+
 class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   int _page = 0;
   late PageController pageController;
@@ -45,7 +47,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         controller: pageController,
         onPageChanged: onPageChanged,
         children: [
-          const Center(child: Text('feed')),
+          const FeedScreen(),
           const Center(child: Text('search')),
           const AddPostScreen(),
           const Center(child: Text('notif')),
@@ -64,7 +66,6 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
             ),
           ),
         ],
-
       ),
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: mobileBackgroundColor,
